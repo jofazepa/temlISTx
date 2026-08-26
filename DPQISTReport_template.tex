@@ -1,0 +1,282 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template genérico — DPQ/IST
+% Classe: DPQISTreport
+% Autor: Direção de Planeamento e Qualidade
+% Data: Agosto 2026
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[
+  a4paper,
+  12pt
+]{DPQISTreport}
+
+%----------------------------------------------------------------------------------------
+%	PACOTES ADICIONAIS (apenas se necessário)
+%----------------------------------------------------------------------------------------
+
+% Se precisar de bibliografia com BibTeX:
+% \addbibresource{referencias.bib}
+
+% Se precisar de mais linguagens:
+% \setotherlanguage{english}
+
+%----------------------------------------------------------------------------------------
+%	DEFINIÇÕES DO RELATÓRIO (cabeçalho e rodapé)
+%----------------------------------------------------------------------------------------
+
+\setreporttitle{Título do Documento}
+\setreportsubtitle{Subtítulo do Documento}
+\setreportdate{\today}
+\setdocversion{v1.00}
+
+% O cabeçalho direito já inclui o logótipo do IST por defeito (definido na classe).
+% Para o substituir ou remover, descomente e edite a linha abaixo:
+% \rightheadercontent{}  % vazio = sem logótipo no cabeçalho
+
+%----------------------------------------------------------------------------------------
+%	INÍCIO DO DOCUMENTO
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	PÁGINA DE CAPA
+%----------------------------------------------------------------------------------------
+
+\pagestyle{empty} % Sem cabeçalho/rodapé na capa
+
+\begin{fullwidth}
+
+  \vspace{-0.075\textheight}
+  \noindent\makebox[\textwidth][r]{\includegraphics[width=6cm]{img/Tecnico_ID_Principal_RBG-COR.png}}
+  \vspace{0.12\textheight}
+
+  \vfill
+  \noindent
+  \begin{minipage}[t]{0.70\textwidth}
+    \raggedright
+    {\fontsize{36pt}{36pt}\selectfont\textbf{\reporttitle}\par}
+    \vspace{0.75cm}
+    {\LARGE\textit{\textbf{\reportsubtitle}}\par}
+  \end{minipage}%
+
+  \vfill
+  {\docversion} de {\reportdate\par}
+
+\end{fullwidth}
+
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	FICHA TÉCNICA / CONTRACAPA
+%----------------------------------------------------------------------------------------
+
+\vspace*{\fill}
+
+\textbf{TÍTULO}\\
+\reporttitle\\
+
+\textbf{PROPRIEDADE}\\
+Instituto Superior Técnico, Universidade de Lisboa\\
+
+\textbf{AUTOR E PAGINAÇÃO}\\
+Direção de Planeamento e Qualidade (DPQ)\\
+
+\textbf{CONTACTOS}\\
+Instituto Superior Técnico\\
+Campus Alameda\\
+Av. Rovisco Pais\\
+1049-001 Lisboa\\
+Tel: +351 218 417 000\\
+
+\textbf{DATA DE ELABORAÇÃO}\\
+{\reportdate\par}
+
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	REGISTO DE ALTERAÇÕES/APROVAÇÕES
+%----------------------------------------------------------------------------------------
+
+\vspace*{\fill}
+
+\textbf{ELABORAÇÃO, VERIFICAÇÃO E APROVAÇÃO}
+
+\begin{table}[!ht]
+    \centering
+    \small
+    \begin{tabularx}{\textwidth}{|L{2.5cm}|X|L{5cm}|}
+        \hline
+        \thead{Função} & \thead{Responsável} & \thead{Data} \\ \hline
+        Elaboração &  &  \\ \hline
+        Verificação &  &  \\ \hline
+        Aprovação &  &  \\ \hline
+    \end{tabularx}
+\end{table}
+
+\textbf{MAPA DE ALTERAÇÕES}
+
+\begin{table}[!ht]
+    \centering
+    \small
+    \begin{tabularx}{\textwidth}{|L{1.5cm}|L{2cm}|X|X|}
+        \hline
+        \thead{Versão} & \thead{Data} & \thead{Alteração} & \thead{Observações} \\ \hline
+        \docversion & \today & Criação do documento &  \\ \hline
+    \end{tabularx}
+\end{table}
+
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	ÍNDICE
+%----------------------------------------------------------------------------------------
+
+\pagestyle{fancy} % Restaurar cabeçalho/rodapé após capa
+
+\begin{twothirdswidth}
+  \tableofcontents
+\end{twothirdswidth}
+
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	CONTEÚDO PRINCIPAL (SECÇÕES)
+%----------------------------------------------------------------------------------------
+
+\section{Introdução}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Objectivos}
+
+\begin{itemize}
+    \item Objectivo 1
+    \item Objectivo 2
+    \item Objectivo 3
+\end{itemize}
+
+\subsubsection{Detalhes}
+
+Texto de detalhe com parágrafo adicional.
+
+\section{Contexto}
+
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+\begin{enumerate}
+    \item Item numerado 1
+    \item Item numerado 2
+    \item Item numerado 3
+\end{enumerate}
+
+\section{Exemplos de Elementos}
+
+\subsection{Tabelas}
+
+As tabelas têm cores de linha alternadas automáticas (branco / \#D2D3D4).
+A primeira linha (cabeçalho) não recebe cor de fundo.
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \begin{tabularx}{\textwidth}{|L{3cm}|X|C{2cm}|}
+        \hline
+        \thead{Coluna 1} & \thead{Coluna 2 (largura ajustável)} & \thead{Coluna 3} \\ \hline
+        Dado 1 & Descrição mais longa aqui & \SI{42}{\percent} \\ \hline
+        Dado 2 & Outro dado & \SI{15}{\percent} \\ \hline
+        Dado 3 & Mais dados & \SI{8}{\percent} \\ \hline
+    \end{tabularx}
+    \caption{Exemplo de tabela com linhas alternadas automáticas}
+    \label{tab:exemplo}
+\end{table}
+
+\subsection{Caixas Institucionais}
+
+\begin{istobj}
+Este é um exemplo de caixa de missão. Utilize este ambiente para destacar missões, objectivos ou declarações importantes do documento.
+\end{istobj}
+
+\begin{istprin}
+\begin{enumerate}[label=\alph*), leftmargin=*]
+    \item Princípio a
+    \item Princípio b
+    \item Princípio c
+\end{enumerate}
+\end{istprin}
+
+\subsection{Figuras}
+
+\begin{figure}[htbp]
+    \centering
+    % Descomente e ajuste caminho da imagem
+    % \includegraphics[width=0.8\textwidth]{example-image}
+    \framebox[0.8\textwidth][c]{\rule{0pt}{4cm} Insira imagem aqui}
+    \caption{Exemplo de figura}
+    \label{fig:exemplo}
+\end{figure}
+
+Como observado na Figura~\ref{fig:exemplo}, ...
+
+\subsection{Notas de Rodapé}
+
+Texto com nota de rodapé.\footnote{Esta é uma nota de rodapé padrão.}
+
+Texto com nota lateral.\nonumsidenote{Esta é uma nota lateral (sidenote).}
+
+\subsection{Listas Aninhadas}
+
+\begin{itemize}
+    \item Item principal
+    \begin{itemize}
+        \item Sub-item 1
+        \item Sub-item 2
+    \end{itemize}
+    \item Item principal 2
+\end{itemize}
+
+\subsection{Citações}
+
+\begin{quote}
+    Uma citação longa ou destaque de texto importante. Pode ter múltiplos parágrafos.
+\end{quote}
+
+\subsection{Referências Bibliográficas}
+
+Se estiver a usar \verb|biblatex|, carregue o ficheiro \verb|.bib| no preâmbulo:
+
+\begin{verbatim}
+\addbibresource{referencias.bib}
+\end{verbatim}
+
+Depois cite com \verb|\cite{chave}| ou \verb|\textcite{chave}|.
+
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	ANEXOS (opcional)
+%----------------------------------------------------------------------------------------
+
+\appendix
+\addcontentsline{toc}{section}{Anexos}
+
+\section{Anexo A: Glossário}
+
+Termo 1: Definição do termo 1.
+
+Termo 2: Definição do termo 2.
+
+\section{Anexo B: Formulários}
+
+Insira formulários ou documentos auxiliares aqui.
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAFIA
+%----------------------------------------------------------------------------------------
+
+\newpage
+\printbibliography
+
+\end{document}
