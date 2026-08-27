@@ -353,14 +353,13 @@
 \tcbset{
 	istbox/.style={
 		enhanced,
-		colback=istgray,
+		colback=white,
 		colframe=istdarkgray,
 		boxrule=0.8pt,
 		left=6mm,
 		right=6mm,
 		top=4mm,
-		bottom=4mm,
-		arc=2mm,
+		bottom=4mm
 		before skip=10pt,
 		after skip=10pt,
 	}
