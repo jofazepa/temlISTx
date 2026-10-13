@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DPQIST Report
 % LaTeX Class — Adapted from Sullivan Business Report
-% Version 1.1 (August 2026)
+% Version 1.2 (August 2026)
 %
 % Original class originates from:
 % https://www.LaTeXTemplates.com
@@ -12,6 +12,8 @@
 %
 % License:
 % CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+% Changelog for version 1.2: Atualização das especificações da letra Source Sans para a versão 3.0.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -128,13 +130,14 @@
 %	FONTS
 %----------------------------------------------------------------------------------------
 
-\usepackage[T1]{fontenc}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+\fi
+
 \usepackage{fontspec}
 
-\usepackage{mathpazo}
-\usepackage{sourcesanspro}
-
-\setmainfont{Source Sans Pro}
+\usepackage{mathpazo}          % Matemática em Palatino (opcional, pode remover)
+\usepackage[default]{sourcesans}
 
 \newcommand{\textel}[1]{{\fontseries{el}\selectfont #1}}
 \newcommand{\textl}[1]{{\fontseries{l}\selectfont #1}}
