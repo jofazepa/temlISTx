@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DPQIST Report
 % LaTeX Class — Adapted from Sullivan Business Report
-% Version 1.2 (August 2026)
+% Version 1.2 (October 2026)
 %
 % Original class originates from:
 % https://www.LaTeXTemplates.com
