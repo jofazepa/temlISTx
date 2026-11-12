@@ -2,7 +2,7 @@
 %%  DPQISTfactsheet.cls
 %%  Classe LaTeX para Factsheets — DPQ / IST
 %%  Adaptada de DPQISTreport.cls (v1.2, Outubro 2026)
-%%  Versão 1.0 (Novembro 2026)
+%%  Versão 1.2 (Novembro 2026)
 %%
 %%  Características:
 %%    - Sem capa nem contracapa (documento curto, 1–2 páginas)
@@ -10,12 +10,18 @@
 %%    - Cabeçalho/rodapé idênticos ao modelo de relatórios
 %%    - Cores e tipografia DPQ/IST (Source Sans 3, IST Blue)
 %%    - Números decimais com vírgula (siunitx)
-%%    - Caixas de indicadores-chave (keymetricbox)
+%%    - Caixas de indicadores-chave com altura uniforme (keymetricbox)
 %%    - Tabelas: linhas alternadas + cabeçalho azul com texto branco
+%%
+%%  Alterações v1.1: keymetricbox usa «equal height group» do tcolorbox,
+%%  garantindo alturas idênticas em todas as caixas do grupo.
+%%  Alterações v1.2: keymetricbox com cantos arredondados (2pt) e fundo
+%%  azul IST muito transparente (opacityback=0.10), coerente com as
+%%  restantes caixas institucionais.
 %%% =========================================================================
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{DPQISTfactsheet}[2026/11/12 DPQ IST Factsheet Class v1.0]
+\ProvidesClass{DPQISTfactsheet}[2026/11/12 DPQ IST Factsheet Class v1.2]
 
 \RequirePackage{iftex}
 \RequirePackage{etoolbox}
@@ -99,6 +105,7 @@
 \definecolor{mylinkcolor}{HTML}{009DE0}
 \definecolor{dpqtablerow}{HTML}{D2D3D4}   % Cinzento das linhas alternadas (relatórios)
 \definecolor{dpqrowlight}{HTML}{EBEDEF}   % Variante mais clara para tabelas numéricas
+\definecolor{istlightblue}{HTML}{DAF1FA}  % Azul IST muito claro (fallback sem transparência)
 
 \color{dpqtext}
 
@@ -177,25 +184,65 @@
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{fontawesome5}
 
+%----------------------------------------------------------------------
+% INDICADORES-CHAVE (keymetricbox)
+%
+% Alturas uniformes: todas as caixas pertencem ao grupo «kmetric»
+% («equal height group» do tcolorbox), pelo que a altura de cada caixa
+% é ajustada à da caixa mais alta do grupo — com mais ou menos texto.
+%
+% Aparência: cantos ligeiramente arredondados (2pt) e fundo azul IST
+% com muita transparência (10% de opacidade sobre o branco da página),
+% obtido com colback=istblue + opacityback=0.10 sobre a skin enhanced.
+% Em impressão sobre papel branco equivale aproximadamente ao tom
+% istlightblue definido acima.
+%
+% IMPORTANTE: requer DUAS compilações. Na 1.ª passagem o tcolorbox
+% mede a altura natural de cada caixa e guarda-a no .aux; na 2.ª
+% passagem aplica a altura máxima a todas.
+%
+% Para linhas de métricas independentes (alturas distintas entre
+% grelhas), use o argumento opcional:
+%   \begin{keymetricbox}[kmg=B] ... \end{keymetricbox}
+% Caixas com letras de grupo diferentes são igualadas apenas entre si.
+%
+% Opções de afinamento rápido:
+%   \begin{keymetricbox}[arc=4pt]          — cantos mais arredondados
+%   \begin{keymetricbox}[opacityback=0.05]  — fundo ainda mais ténue
+%   \begin{keymetricbox}[colback=istlightblue, no opacity] — fundo sólido
+%----------------------------------------------------------------------
+
 \tcbset{
   keymetric/.style={
     enhanced,
-    colback=white,
+    colback=istblue,
+    opacityback=0.10,           % transparência do fundo (0 = invisível, 1 = opaco)
     colframe=dpqheader,
     boxrule=0.6pt,
-    arc=0pt,
+    opacityframe=1,
+    arc=2pt,                    % cantos ligeiramente arredondados
     left=4mm, right=4mm, top=3mm, bottom=3mm,
     before skip=8pt, after skip=8pt,
-  }
+    valign=top,                 % conteúdo alinhado ao topo na caixa esticada
+    equal height group=kmetric, % altura uniforme dentro do grupo
+  },
+  keymetricB/.style={
+    keymetric,
+    equal height group=kmetricB,
+  },
 }
 
 % Uso:
 % \begin{keymetricbox}
 %   \keylabel{Indicador} \keyvalue{\SI{42,3}{\percent}} \keynote{Nota}
 % \end{keymetricbox}
-% Disponha várias em linha com tabularx{...}{XXX}.
-\newenvironment{keymetricbox}[1][]{
-  \begin{tcolorbox}[keymetric, valign=top, #1]
+% Disponha várias em linha com tabularx{\textwidth}{XXX}.
+\newenvironment{keymetricbox}[1][A]{%
+  \ifstrequal{#1}{A}{%
+    \begin{tcolorbox}[keymetric]%
+  }{%
+    \begin{tcolorbox}[keymetricB]%
+  }%
 }{%
   \end{tcolorbox}
 }
@@ -204,12 +251,17 @@
 \newcommand{\keyvalue}[1]{{\fontsize{20pt}{22pt}\selectfont\bfseries\color{dpqheader}#1}\par}
 \newcommand{\keynote}[1]{{\footnotesize\color{istdarkgray}#1}}
 
+%----------------------------------------------------------------------
+% CAIXAS INSTITUCIONAIS
+%----------------------------------------------------------------------
+
 \tcbset{
   istbox/.style={
     enhanced,
     colback=white,
     colframe=istdarkgray,
     boxrule=0.8pt,
+    arc=2pt,                    % cantos ligeiramente arredondados, como as métricas
     left=6mm, right=6mm, top=4mm, bottom=4mm,
     before skip=10pt, after skip=10pt,
   }
