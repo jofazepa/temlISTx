@@ -1,0 +1,150 @@
+%%% =========================================================================
+%%  Factsheet — Template (classe DPQISTfactsheet)
+%%  Direção de Planeamento e Qualidade — IST
+%%  Compilar com XeLaTeX ou LuaLaTeX
+%%% =========================================================================
+
+\documentclass[a4paper, 11pt]{DPQISTfactsheet}
+
+%----------------------------------------------------------------------------------------
+%	DEFINIÇÕES DO FACTSHEET
+%----------------------------------------------------------------------------------------
+
+\setfactsheettitle{Factsheet — Título do Indicador}
+\setfactsheetsubtitle{Subtítulo informativo curto}
+\setfactsheetcode{FS-DPQ-001}           % código interno do documento
+\setfactsheetdate{\today}
+\setdocversion{v1.00}
+
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TÍTULO DO FACTSHEET (bloco de abertura)
+%----------------------------------------------------------------------------------------
+
+\begin{center}
+    {\fontsize{26pt}{30pt}\selectfont\bfseries\color{dpqheader}\factsheettitle\par}
+    \vspace{0.3cm}
+    {\Large\itshape\factsheetsubtitle\par}
+    \vspace{0.2cm}
+    {\small\color{istdarkgray}\docversion\ · \factsheetdate\ · \factsheetcode\par}
+\end{center}
+
+\vspace{0.4cm}
+
+%----------------------------------------------------------------------------------------
+%	INDICADORES-CHAVE (key metrics) — opcional
+%----------------------------------------------------------------------------------------
+
+\begin{tabularx}{\textwidth}{XXX}
+    \begin{keymetricbox}
+        \keylabel{Indicador 1}
+        \keyvalue{\SI{42,3}{\percent}}
+        \keynote{Variação de +2,1 p.p. face a 2025}
+    \end{keymetricbox}
+    &
+    \begin{keymetricbox}
+        \keylabel{Indicador 2}
+        \keyvalue{\num{12345}}
+        \keynote{Fonte: base de dados institucional}
+    \end{keymetricbox}
+    &
+    \begin{keymetricbox}
+        \keylabel{Indicador 3}
+        \keyvalue{\SI{97,8}{\percent}}
+        \keynote{Meta anual: \SI{95}{\percent}}
+    \end{keymetricbox}
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	SECÇÃO
+%----------------------------------------------------------------------------------------
+
+\section{Enquadramento}
+
+Texto introdutório do factsheet. Sem capa nem registo de alterações: o documento
+começa directamente pelo título e pelos resultados.
+
+%----------------------------------------------------------------------------------------
+%	TABELA NUMÉRICA PEQUENA/MÉDIA (portrait)
+%----------------------------------------------------------------------------------------
+
+\subsection{Resultados por categoria}
+
+As colunas \verb|S| alinham os números à direita pela vírgula decimal e
+agrupam os milhares automaticamente.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Exemplo de tabela numérica em portrait}
+    \label{tab:portrait}
+    \rowcolors{2}{dpqrowlight}{white}
+    \begin{tabular}{L{4cm} S[table-format=5.0] S[table-format=2.1] S[table-format=2.1]}
+        \toprule
+        {\theadS{Categoria}} & {\theadS{N}} & {\theadS{Média}} & {\theadS{Desvio padrão}} \\
+        \midrule
+        Categoria A & 12345 & 87,3 & 4,2 \\
+        Categoria B & 9870  & 82,1 & 5,7 \\
+        Categoria C & 6540  & 78,9 & 6,1 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+%----------------------------------------------------------------------------------------
+%	TABELA NUMÉRICA GRANDE EM LANDSCAPE
+%----------------------------------------------------------------------------------------
+
+\newpage
+
+\begin{landscape}
+
+\section{Dados detalhados (landscape)}
+
+Em landscape a largura útil aumenta, permitindo tabelas de 8–12 colunas.
+O cabeçalho e rodapé acompanham a rotação da página.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Exemplo de tabela numérica grande em landscape}
+    \label{tab:landscape}
+    \rowcolors{2}{dpqrowlight}{white}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{L{2.5cm} *{8}{S[table-format=5.1]}}
+        \toprule
+        {\theadS{Unidade orgânica}} & {\theadS{2023}} & {\theadS{2024}} & {\theadS{2025}} & {\theadS{2026}} &
+        {\theadS{$\Delta$ 24/23}} & {\theadS{$\Delta$ 25/24}} & {\theadS{$\Delta$ 26/25}} & {\theadS{Meta 2027}} \\
+        \midrule
+        Unidade A & 103,2 & 108,5 & 111,7 & 114,2 & 5,3 & 3,2 & 2,5 & 120,0 \\
+        Unidade B & 96,8  & 99,1  & 101,3 & 102,0 & 2,3 & 2,2 & 0,7 & 105,0 \\
+        Unidade C & 88,4  & 91,0  & 95,2  & 97,7  & 2,6 & 4,2 & 2,5 & 100,0 \\
+        \addlinespace
+        \textbf{Total} & \textbf{288,4} & \textbf{298,6} & \textbf{308,2} & \textbf{313,9} & \textbf{10,2} & \textbf{9,6} & \textbf{5,7} & \textbf{325,0} \\
+        \bottomrule
+    \end{tabular}%
+    }
+\end{table}
+
+Notas de utilização: use \verb|\resizebox{\linewidth}{!}| para compressão
+automática, \verb|\addlinespace| + \verb|\textbf| para linhas de total, e
+\verb|\theadS{...}| em todas as células da primeira linha (fundo azul, texto branco).
+
+\end{landscape}
+
+%----------------------------------------------------------------------------------------
+%	CAIXAS INSTITUCIONAIS (opcional)
+%----------------------------------------------------------------------------------------
+
+\newpage
+\begin{istobj}
+Sintaxe idêntica ao modelo de relatórios, para consistência visual entre documentos.
+\end{istobj}
+
+\begin{istprin}
+\begin{enumerate}[label=\alph*), leftmargin=*]
+    \item Principais conclusões em formato compacto.
+    \item Fontes citadas em nota de rodapé.\footnote{Fonte: DPQ, 2026.}
+\end{enumerate}
+\end{istprin}
+
+\end{document}
