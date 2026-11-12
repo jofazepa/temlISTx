@@ -99,7 +99,7 @@ Grupos independentes (alturas igualadas só dentro do grupo): `\begin{keymetricb
 
 ### Caixas institucionais (istcaixa)
 
-Ícone [fontawsome]([fontawsome](https://fontawesome.com/)) e título definidos no documento:
+Ícone [fontawsome](fontawsome](https://fontawesome.com/) e título definidos no documento:
 
 ```latex
 \begin{istcaixa}{\faBullseye}{Missão}
