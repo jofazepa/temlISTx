@@ -174,16 +174,6 @@
 %----------------------------------------------------------------------
 % INDICADORES-CHAVE (keymetricbox)
 %
-% Alturas uniformes: todas as caixas pertencem ao grupo «kmetric»
-% («equal height group» do tcolorbox), pelo que a altura de cada caixa
-% é ajustada à da caixa mais alta do grupo — com mais ou menos texto.
-%
-% Aparência: cantos ligeiramente arredondados (2pt) e fundo azul IST
-% com muita transparência (10% de opacidade sobre o branco da página),
-% obtido com colback=istblue + opacityback=0.10 sobre a skin enhanced.
-% Em impressão sobre papel branco equivale aproximadamente ao tom
-% istlightblue definido acima.
-%
 % IMPORTANTE: requer DUAS compilações. Na 1.ª passagem o tcolorbox
 % mede a altura natural de cada caixa e guarda-a no .aux; na 2.ª
 % passagem aplica a altura máxima a todas.
@@ -202,23 +192,25 @@
 \tcbset{
   keymetric/.style={
     enhanced,
-    colback=kmbg,               
+    colback=kmbg,
     colframe=dpqheader,
     boxrule=0.6pt,
-    arc=2pt,
+    arc=2pt,                    % cantos ligeiramente arredondados
     left=4mm, right=4mm, top=3mm, bottom=3mm,
     before skip=8pt, after skip=8pt,
-    valign=top,
-    equal height group=kmetric,
+    valign=top,                 % conteúdo alinhado ao topo na caixa esticada
+    equal height group=kmetric, % altura uniforme dentro do grupo
   },
-  ...
+  keymetricB/.style={
+    keymetric,
+    equal height group=kmetricB,
+  },
 }
 
 % Uso:
 % \begin{keymetricbox}
 %   \keylabel{Indicador} \keyvalue{\SI{42,3}{\percent}} \keynote{Nota}
 % \end{keymetricbox}
-% Disponha várias em linha com tabularx{\textwidth}{XXX}.
 \newenvironment{keymetricbox}[1][A]{%
   \ifstrequal{#1}{A}{%
     \begin{tcolorbox}[keymetric]%
@@ -243,21 +235,21 @@
     colback=white,
     colframe=istdarkgray,
     boxrule=0.8pt,
-    arc=2pt,                    % cantos ligeiramente arredondados, como as métricas
+    arc=2pt,                    % cantos ligeiramente arredondados
     left=6mm, right=6mm, top=4mm, bottom=4mm,
     before skip=10pt, after skip=10pt,
+    % Header de largura total: fundo cinza-escuro, texto branco
+    colbacktitle=istdarkgray,
+    coltitle=white,
+    fonttitle=\bfseries,
+    titlerule=0pt,
+    toptitle=2mm, bottomtitle=2mm,
   }
 }
 
-\newtcolorbox{istobj}[1][]{
+\newtcolorbox{istcaixa}[3][]{%
   istbox,
-  title={\faBullseye\ \textbf{Missão}},
-  #1
-}
-
-\newtcolorbox{istprin}[1][]{
-  istbox,
-  title={\faBalanceScale\ \textbf{Princípios orientadores}},
+  title={\ifblank{#2}{}{#2\;\ }\textbf{#3}},
   #1
 }
 
