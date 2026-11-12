@@ -1,9 +1,3 @@
-%%% =========================================================================
-%%  Factsheet — Template (classe DPQISTfactsheet)
-%%  Direção de Planeamento e Qualidade — IST
-%%  Compilar com XeLaTeX ou LuaLaTeX
-%%% =========================================================================
-
 \documentclass[a4paper, 11pt]{DPQISTfactsheet}
 
 %----------------------------------------------------------------------------------------
@@ -132,19 +126,25 @@ automática, \verb|\addlinespace| + \verb|\textbf| para linhas de total, e
 \end{landscape}
 
 %----------------------------------------------------------------------------------------
-%	CAIXAS INSTITUCIONAIS (opcional)
+%	CAIXAS INSTITUCIONAIS
 %----------------------------------------------------------------------------------------
 
 \newpage
-\begin{istobj}
-Sintaxe idêntica ao modelo de relatórios, para consistência visual entre documentos.
-\end{istobj}
 
-\begin{istprin}
+\begin{istcaixa}{\faBullseye}{Exemplo}
+Sintaxe idêntica ao modelo de relatórios, para consistência visual entre
+documentos. O ícone e o título da caixa são definidos no documento.
+\end{istcaixa}
+
+\begin{istcaixa}{\faBalanceScale}{Exemplo maior}
 \begin{enumerate}[label=\alph*), leftmargin=*]
     \item Principais conclusões em formato compacto.
     \item Fontes citadas em nota de rodapé.\footnote{Fonte: DPQ, 2026.}
 \end{enumerate}
-\end{istprin}
+\end{istcaixa}
+
+% Exemplos de variantes:
+% \begin{istcaixa}[colframe=dpqheader]{\faChartLine}{Indicadores} ... \end{istcaixa}
+% \begin{istcaixa}{}{Notas sem ícone} ... \end{istcaixa}
 
 \end{document}
