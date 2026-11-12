@@ -3,21 +3,6 @@
 %%  Classe LaTeX para Factsheets — DPQ / IST
 %%  Adaptada de DPQISTreport.cls (v1.2, Outubro 2026)
 %%  Versão 1.2 (Novembro 2026)
-%%
-%%  Características:
-%%    - Sem capa nem contracapa (documento curto, 1–2 páginas)
-%%    - Páginas em portrait ou landscape (\begin{landscape})
-%%    - Cabeçalho/rodapé idênticos ao modelo de relatórios
-%%    - Cores e tipografia DPQ/IST (Source Sans 3, IST Blue)
-%%    - Números decimais com vírgula (siunitx)
-%%    - Caixas de indicadores-chave com altura uniforme (keymetricbox)
-%%    - Tabelas: linhas alternadas + cabeçalho azul com texto branco
-%%
-%%  Alterações v1.1: keymetricbox usa «equal height group» do tcolorbox,
-%%  garantindo alturas idênticas em todas as caixas do grupo.
-%%  Alterações v1.2: keymetricbox com cantos arredondados (2pt) e fundo
-%%  azul IST muito transparente (opacityback=0.10), coerente com as
-%%  restantes caixas institucionais.
 %%% =========================================================================
 
 \NeedsTeXFormat{LaTeX2e}
@@ -98,7 +83,8 @@
 \RequirePackage[usenames, svgnames, table]{xcolor}
 
 \definecolor{dpqtext}{HTML}{46555F}       % Cor do texto
-\definecolor{dpqheader}{HTML}{009DE0}     % IST Blue — títulos e cabeçalhos de tabela
+\definecolor{dpqheader}{HTML}{009DE0}     % IST Blue — títulos
+\definecolor{dpqtableheader}{HTML}{46555F}     % IST Ardósia — cabeçalhos de tabela
 \definecolor{istblue}{HTML}{009DE0}
 \definecolor{istgray}{HTML}{D2D3D4}
 \definecolor{istdarkgray}{HTML}{46555F}
@@ -106,6 +92,7 @@
 \definecolor{dpqtablerow}{HTML}{D2D3D4}   % Cinzento das linhas alternadas (relatórios)
 \definecolor{dpqrowlight}{HTML}{EBEDEF}   % Variante mais clara para tabelas numéricas
 \definecolor{istlightblue}{HTML}{DAF1FA}  % Azul IST muito claro (fallback sem transparência)
+\colorlet{kmbg}{istblue!10!white}
 
 \color{dpqtext}
 
@@ -159,9 +146,9 @@
 
 \newcommand{\thead}[1]{\textbf{#1}}
 
-% Célula de cabeçalho de tabela: fundo azul IST, texto branco
+% Célula de cabeçalho de tabela
 % Uso: \theadS{Nome da coluna} em cada célula da primeira linha
-\newcommand{\theadS}[1]{\cellcolor{dpqheader}\color{white}\textbf{#1}}
+\newcommand{\theadS}[1]{\cellcolor{dpqtableheader}\color{white}\textbf{#1}}
 
 %----------------------------------------------------------------------------------------
 %	SIUNITX (decimal português, agrupamento de milhares)
@@ -215,21 +202,16 @@
 \tcbset{
   keymetric/.style={
     enhanced,
-    colback=istblue,
-    opacityback=0.10,           % transparência do fundo (0 = invisível, 1 = opaco)
+    colback=kmbg,               
     colframe=dpqheader,
     boxrule=0.6pt,
-    opacityframe=1,
-    arc=2pt,                    % cantos ligeiramente arredondados
+    arc=2pt,
     left=4mm, right=4mm, top=3mm, bottom=3mm,
     before skip=8pt, after skip=8pt,
-    valign=top,                 % conteúdo alinhado ao topo na caixa esticada
-    equal height group=kmetric, % altura uniforme dentro do grupo
+    valign=top,
+    equal height group=kmetric,
   },
-  keymetricB/.style={
-    keymetric,
-    equal height group=kmetricB,
-  },
+  ...
 }
 
 % Uso:
