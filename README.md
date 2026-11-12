@@ -1,4 +1,4 @@
-# Modelos LaTeX DPQ/IST
+# Modelos LaTeX temLISTx para Relatórios e Fichas Informativas
 
 Modelos LaTeX construidos para a Direção de Planeamento e Qualidade (DPQ) do Instituto Superior Técnico, para produção de **relatórios** e **factsheets** com a identidade visual padronizada.
 
